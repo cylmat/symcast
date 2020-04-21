@@ -54,16 +54,16 @@ set('target_directory', '~/');
 set('deploy_path', '{{target_directory}}{{application}}'); 
 
 // Repository //
-set('branch', 'main');
+set('branch', 'book');
 set('repository', $REPOSITORY);
 
 // OTHERS //
 set('allow_anonymous_stats', false);
-set('composer_action', 'update'); //default install
+//set('composer_action', 'update'); //default install
 set('keep_releases', 10);
 
 // Shared files/dirs between deploys 
-set('shared_dirs', ['vendor', 'var']);
+set('shared_dirs', ['var', 'vendor']);
 
 /********
  * Hosts sample
@@ -88,11 +88,11 @@ host('prod')
  * https://deployer.org/docs/tasks.html
  */
 
-// Simlink host .env //
+// Manually upload local files //
 task('link:env', function () {
     $src_env = '{{deploy_path}}/.env';
-    $target_env = "{{release_path}}/.env";
-    
+    $target_env = "{{release_path}}/.env.local";
+
     if (test("test -f $src_env"))
         run("ln -s $src_env $target_env");
 });
@@ -102,6 +102,16 @@ task('local:upload', function () {
     upload(__DIR__ . "/", '{{release_path}}');
 });
 
+task('composer:dump-autoload', function () {
+    run('ln -s /homez.230/camencyfih/composer {{release_path}}/composer');
+    run('cd {{release_path}} && /usr/local/php7.3/bin/php {{release_path}}/composer dump-autoload');
+});
+
+task('cache:clear', function () {
+    run('cd {{release_path}} && make clear');
+    run('cd {{release_path}} && /usr/local/php7.3/bin/php bin/console cache:clear --env=prod');
+});
+
 // Run tasks //
 
 $upload = ['deploy:update_code', 'local:upload'][1];
@@ -109,21 +119,27 @@ $upload = ['deploy:update_code', 'local:upload'][1];
 desc('Deploy your project');
 task('deploy', [
     'deploy:unlock',
-
     'deploy:info',
     'deploy:prepare',
     'deploy:lock',
     'deploy:release',
     $upload,
     'deploy:shared',
-    //'deploy:vendors',
+    // not used 'deploy:vendors',
     'deploy:clear_paths',
     'deploy:symlink',
     'link:env',
+    'composer:dump-autoload',
+    'cache:clear',
     'deploy:unlock',
     'cleanup',
     'success'
 ]);
+
+after('success', 'releasenum');
+task('releasenum', function () {
+    var_dump(get('releases_list')[0]);
+});
 
 /*********
  * Orders
@@ -137,7 +153,7 @@ fail('*', 'deploy:unlock');
  *  PREFIX PREVIOUS   *
  * Avoid host caching *
  *********************/
-before('cleanup', 'prefix_previous');
+after('deploy:symlink', 'prefix_previous');
 before('rollback', 'unprefix_previous_rollback');
 
 task('prefix_previous', function () {

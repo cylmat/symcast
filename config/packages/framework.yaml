@@ -1,0 +1,20 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+    #csrf_protection: true
+    #http_method_override: true
+
+    session:
+        enabled: true
+        handler_id: null
+        #handler_id: '%env(REDIS_URL)%'
+        cookie_secure: auto
+        cookie_samesite: lax
+
+        # by symfony
+        #handler_id: 'session.handler.native_file'
+        #save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    
+    esi: true
+    #fragments: true
+    php_errors:
+        log: true

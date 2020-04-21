@@ -1,14 +1,14 @@
-# CREATE
+# Create
 composer create-project symfony/skeleton <tiny_project_name>
 composer create-project symfony/website-skeleton <full_project_name>
 
-# BOOK
+# Book
 git clone https://github.com/the-fast-track/book-5.0-1
 cp -r book-5.0-1/* .
 
 # Check
 wget https://github.com/php-amqplib/php-amqplib/archive/refs/heads/master.zip
 
-# FLEX
+# Flex
 https://flex.symfony.com/
 https://github.com/symfony/recipes

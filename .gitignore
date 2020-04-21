@@ -1,3 +1,9 @@
+/.ssh/
+/book*/
+/public/uploads
+/.data/
+*.local*
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -15,8 +21,15 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-/.data/
+
+###> symfony/webpack-encore-bundle ###
 /node_modules/
 /spa/
-yarn.lock
-*.local*
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###

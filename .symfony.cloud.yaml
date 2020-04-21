@@ -1,0 +1,24 @@
+runtime:
+     extensions:
+        - pdo_pgsql
+        - apcu
+        - mbstring
+        - sodium
+
+disk: 512
+
+relationships:
+    database: "db:postgresql"
+
+web:
+     locations:
+         "/":
+
+crons:
+    comment_cleanup:
+        # Cleanup every night at 11.50 pm (UTC).
+        spec: '50 23 * * *'
+        cmd: |
+            if [ "$SYMFONY_BRANCH" = "master" ]; then
+                croncape symfony console app:comment:cleanup
+            fi

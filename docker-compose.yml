@@ -11,7 +11,7 @@ services:
             - 88:80
         environment: 
             DATABASE_MYSQL_URL: mysql://user:pass@mysql:3306/mydb
-            DATABASE_POSTGRES_URL: postgres://user:pass@postgres:5432/pgdb7
+            DATABASE_POSTGRES_URL: postgres://user:pass@postgres:5432/pgdb
             RABBITMQ_DSN: amqp://guest:guest@rabbitmq:5672
         volumes:
             ##################################################
