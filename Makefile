@@ -15,8 +15,8 @@ dist:
 	git pull origin book
 	git b --set-upstream-to=origin/book
 	composer install
-	sc doctrine:migrations:migrate
-	sc doctrine:fixtures:load
+	echo 'y' | sc doctrine:migrations:migrate
+	echo 'y' | sc doctrine:fixtures:load
 
 ##############
 # GIT REBASE #
