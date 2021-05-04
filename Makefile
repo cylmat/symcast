@@ -5,15 +5,18 @@ SHELL := /bin/bash
 ########
 dist:
 	git init
-	git config  user.name "cylmat"
-	git config  user.email "cyrilmatte.pro@gmail.com"
+	git config user.name "cylmat"
+	git config user.email "cyrilmatte.pro@gmail.com"
 	git remote add origin https://github.com/cylmat/symfony5
 	git cb base
+	git pull origin base
 	git b --set-upstream-to=origin/base
-	git pull --all
 	git cb book
+	git pull origin book
 	git b --set-upstream-to=origin/book
-	git pull --all
+	composer install
+	sc doctrine:migrations:migrate
+	sc doctrine:fixtures:load
 
 ##############
 # GIT REBASE #
