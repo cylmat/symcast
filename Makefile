@@ -1,5 +1,20 @@
 SHELL := /bin/bash
 
+########
+# DIST #
+########
+dist:
+	git init
+	git config  user.name "cylmat"
+	git config  user.email "cyrilmatte.pro@gmail.com"
+	git remote add origin https://github.com/cylmat/symfony5
+	git cb base
+	git b --set-upstream-to=origin/base
+	git pull --all
+	git cb book
+	git b --set-upstream-to=origin/book
+	git pull --all
+
 ##############
 # GIT REBASE #
 ##############
