@@ -5,7 +5,6 @@ services:
         # Build only once, then use local image
         #build: .docker
         image: symfony5
-        container_name: symfony_apache
         restart: always
         working_dir: /var/www
         ports: 
@@ -38,7 +37,6 @@ services:
 
     mysql:
         image: mysql:5.6
-        container_name: symfony_mysql
         restart: always
         environment:
             MYSQL_ROOT_PASSWORD: root
@@ -58,7 +56,6 @@ services:
     # https://hub.docker.com/_/postgres
     postgres:
         build: .docker/postgres
-        container_name: symfony_postgres
         restart: always
         environment:
             POSTGRES_USER: user
@@ -76,9 +73,18 @@ services:
 
     # https://hub.docker.com/_/rabbitmq
     rabbitmq:
-        build: .docker/rabbitmq
-        container_name: symfony_rabbitmq
+        image: rabbitmq:3.8
         restart: always
+        networks:
+            - sym
+
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 8088:80
+        environment:
+            PMA_ARBITRARY: 1
         networks:
             - sym
 
@@ -88,7 +94,7 @@ services:
     ######
     pgadmin: 
         image: dpage/pgadmin4
-        container_name: symfony_pgadmin
+        restart: always
         environment: 
             # https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
             PGADMIN_DEFAULT_EMAIL: admin@local.host
@@ -100,7 +106,7 @@ services:
             - ${DIRECTORY}/.docker/conf/pgadmin/servers.json:/pgadmin4/servers.json
             # https://www.postgresql.org/docs/9.1/libpq-pgpass.html
         ports: 
-            - 8888:80
+            - 8087:80
         networks:
             - sym
 
