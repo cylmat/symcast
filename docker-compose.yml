@@ -44,7 +44,7 @@ services:
             MYSQL_PASSWORD: pass
             MYSQL_DATABASE: mydb
         # For Windows users
-        command: "--innodb_use_native_aio=0"
+        #command: "--innodb_use_native_aio=0"
         volumes:
             - ${DIRECTORY}/.docker/conf/mysql/my.cnf:/etc/mysql/my.cnf:ro
             - mysql:/var/lib/mysql/
