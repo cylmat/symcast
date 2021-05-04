@@ -21,6 +21,7 @@ services:
 
             # HOME
             - ${DIRECTORY}/.docker/.home/.bashrc:/root/.bashrc
+            - ${DIRECTORY}/.docker/.home/.bash-aliases:/root/.bash-aliases
             - ${DIRECTORY}/.docker/.home/.gitconfig:/root/.gitconfig
             - ${DIRECTORY}/.docker/.home/user-prompt.sh:/root/user-prompt.sh
             - ${DIRECTORY}/.docker/.home/prompt:/root/prompt
