@@ -15,6 +15,9 @@ deployer-bin:
 	chmod +x /usr/local/bin/dep
 	dep -V -f -
 
+kint-bin:
+	curl -LO https://raw.githubusercontent.com/kint-php/kint/master/build/kint.phar
+
 symfony-cli:
 	wget https://get.symfony.com/cli/installer -O - | bash
 	mv /root/.symfony/bin/symfony /usr/local/bin/symfony
