@@ -115,6 +115,17 @@ services:
         networks:
             - sym
 
+    redis:
+        image: redis:6.2-alpine
+        ports:
+            - 6379:6379
+
+    redis-gui:
+        image: marian/rebrow
+        restart: always
+        ports:
+            - 5001:5001
+
 networks:
     sym:
 
