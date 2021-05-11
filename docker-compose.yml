@@ -74,8 +74,12 @@ services:
 
     # https://hub.docker.com/_/rabbitmq
     rabbitmq:
-        image: rabbitmq:3.8
+        image: rabbitmq:3.8-management
         restart: always
+        ports: 
+            #[5672, 15672]
+            - 5672:5672
+            - 15672:15672
         networks:
             - sym
 
