@@ -140,6 +140,8 @@ services:
         image: blackfire/blackfire
         env_file: .env.local
         ports: [8707]
+        networks:
+            - sym
 
 networks:
     sym:
