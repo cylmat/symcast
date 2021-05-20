@@ -30,6 +30,7 @@ services:
 
             # used to update local config in needed (like .docker)
             - ${DIRECTORY}:/SYMFONY
+            - ${DIRECTORY}/.docker/conf/php/99-blackfire.ini:/usr/local/etc/php/conf.d/99-blackfire.ini
 
             - ${DIRECTORY}/.docker/conf/httpd/000-default.conf:/etc/apache2/sites-available/000-default.conf:ro
             - vscode-server:/root/.vscode-server
