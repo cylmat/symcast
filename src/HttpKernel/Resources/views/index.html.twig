@@ -1,0 +1,9 @@
+{% extends '@Fundamental/base.html.twig' %}
+
+{% block body %}
+    {% if question is not null %}
+        <p>{{ question }}</p>
+
+        <p>{{ render(controller('HttpKernel\\Controller\\QuestionNewController::PartialRequest', {partialMac: ua})) }}</p>
+    {% endif %}
+{% endblock %}

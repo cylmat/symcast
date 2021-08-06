@@ -1,0 +1,19 @@
+indexnew:
+   path: /new/{id}/{plurial}
+   controller: HttpKernel\Controller\QuestionNewController::indexAction
+   defaults:
+      id: null
+      plurial: null
+   #locale:
+   #format:
+   #utf8
+   #exclude:
+   #resource:
+   #type: 
+   #prefix:
+   #host:
+   #schemes:
+   #methods:
+   #requirements:
+   #options:
+   #condition:
