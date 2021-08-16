@@ -1,17 +1,16 @@
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/build/
 /var/
 /bin/
 /vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
-.phpunit
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
@@ -21,6 +20,7 @@
 /spa/
 yarn.lock
 *.local*
+
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache

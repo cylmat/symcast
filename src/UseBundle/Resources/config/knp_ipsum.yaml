@@ -1,0 +1,4 @@
+my_knp:
+  word_provider: UseBundle\Service\CustomProvider # replaced by tags
+  unicorn: true
+  min: 2

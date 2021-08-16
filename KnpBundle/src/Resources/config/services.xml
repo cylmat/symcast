@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+<!-- PROVIDER -->
+        <service id="knp.provider" class="KnpBundle\KnpProvider" public="false">
+             <tag name="knp.provider.tag" /><!-- v3: Use compiler pass and tags -->
+        </service>
+        <!-- alternative with alias -->
+        <service id="knp.custom_provider" alias="knp.provider" public="false" />
+           
+<!-- SERVICE -->
+        <!-- set id -->
+        <service id="knp.ipsum" class="KnpBundle\Service\KnpIpsum" public="true">
+            <!--argument type="service" id="knp.custom_provider"/> < v1: One list -->
+            <!--argument type="collection">
+                <argument type="service" id="knp.custom_provider" />< v2: Collection >
+            </argument-->
+
+            <!-- v3: Empty collection filled with tags, Sym v3.4 and more -->
+            <!--argument type="collection" /--> 
+
+            <!-- v3: Use compiler pass (all Sym versions) -->
+            <argument type="tagged" tag="knp.provider.tag" />
+        </service>
+        <!-- set alias -->
+        <service id="KnpBundle\Service\KnpIpsum" alias="knp.ipsum" public="false" />
+
+<!-- CONTROLLER -->
+        <service id="knp.api_controller" class="KnpBundle\Controller\KnpApiController" public="true">
+            <!-- Symfony 5 -->
+            <call method="setContainer"><!-- setting in AbstractController -->
+                <argument type="service" id="Psr\Container\ContainerInterface"/>
+            </call>
+            <tag name="container.service_subscriber"/>
+            <!-- 5 -->
+
+            <argument type="service" id="knp.ipsum"/>
+            <argument type="service" id="event_dispatcher" on-invalid="null"/> <!-- for TU -->
+        </service>  
+    </services>
+</container>

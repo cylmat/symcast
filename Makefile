@@ -8,6 +8,7 @@ alias:
 	alias sr="./symfony composer"
 	alias r="./composer"
 	alias pushing='f(){ git add . && git commit -m "$@" && git push;  unset -f f; }; f'
+	alias amend="git add . && git commit --amend --no-edit"
 
 db:
 	apt-get update && apt-get install -y sqlite3
