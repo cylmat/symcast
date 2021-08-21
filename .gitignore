@@ -6,6 +6,7 @@
 /public/bundles/
 /public/build/
 /var/
+/bin/
 /vendor/
 ###< symfony/framework-bundle ###
 

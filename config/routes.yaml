@@ -1,3 +1,11 @@
 # name:
 #    path: /
 #    controller: Controller::Action
+
+# AUTOLOAD ALL BUNDLES ROUTES
+bundle_routes:
+    resource: "../src/*/Resources/config/routes.yaml"
+
+# Sample for one bundle!
+# my_bundle:
+#     resource: '@MyBundle/Resources/config/routes.yaml'

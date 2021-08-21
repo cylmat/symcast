@@ -41,12 +41,13 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\\": "src/",
+            "Fundamental\\": "src/Fundamental/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Fundamental\\Tests\\": "src/Fundamental/tests/"
         }
     },
     "replace": {
@@ -59,7 +60,6 @@
     },
     "scripts": {
         "auto-scripts": {
-
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [

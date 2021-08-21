@@ -1,0 +1,9 @@
+sentry:
+    dsn: '%env(SENTRY_DSN)%'
+
+
+
+# Sentry bug
+# sensio_framework_extra:
+#    psr_message:
+#       enabled: false

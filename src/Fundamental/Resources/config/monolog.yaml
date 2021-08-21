@@ -1,0 +1,8 @@
+monolog:
+  channels: ['markdown'] # Will bind logger if named $markdown
+
+  handlers:
+    sentry:
+      type: sentry
+      level: !php/const Monolog\Logger::ERROR
+      hub_id: Sentry\State\HubInterface

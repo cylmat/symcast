@@ -1,0 +1,19 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            bool $isDebug: '%kernel.debug%'
+            Psr\Log\LoggerInterface $mdLogger: '@monolog.logger.markdown'
+
+    Fundamental\:
+        resource: '../../'
+        exclude:
+            - '../Tests/'
+
+    Fundamental\Controller\:
+        resource: '../../Controller/'
+        tags: ['controller.service_arguments']
+
+    Psr\Log\LoggerInterface $mdLogger: '@monolog.logger.markdown'
