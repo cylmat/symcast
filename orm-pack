@@ -1,0 +1,6 @@
+symfony/[orm]-pack v2.1 
+    composer/package-versions-deprecated: *
+    doctrine/doctrine-bundle: ~2.3
+    doctrine/orm: *
+    doctrine/doctrine-migrations-bundle: *
+    symfony/proxy-manager-bridge: ^4

@@ -36,6 +36,9 @@ services:
             - vscode-server:/root/.vscode-server
         networks:
             - sym
+ 
+# docker run --network local_default -v sql:/var/lib/mysql -p '3306:3306' --name=mysql --env MYSQL_ROOT_PASSWORD=root -d mysql:5.6
+# docker run --network local_default -p '8888:80' --env PMA_HOST=mysql -d phpmyadmin:5.0
 
     mysql:
         image: mysql:5.6

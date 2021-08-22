@@ -20,3 +20,7 @@
 /spa/
 yarn.lock
 *.local*
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
