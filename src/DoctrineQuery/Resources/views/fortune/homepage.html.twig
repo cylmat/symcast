@@ -1,0 +1,12 @@
+<html>
+
+<body>
+    {% for category in categories %}
+        <b>{{ category.name }}({{ category.id }}) - {{ category.iconKey }}</b>
+        {% for cookie in category.fortuneCookies %}
+            <p>{{ cookie.fortune }}</p>
+        {% endfor %}
+    {% endfor %}
+</body>
+
+</html>

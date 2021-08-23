@@ -1,0 +1,3 @@
+doctrine_query_controller:
+    resource: ../../Controller
+    type: annotation

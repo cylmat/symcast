@@ -1,0 +1,4 @@
+doctrine:
+    orm:
+        filters:
+            fortune_cookie_discontinued: DoctrineQuery\Doctrine\DiscontinuedFilter

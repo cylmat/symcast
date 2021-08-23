@@ -1,0 +1,16 @@
+<html>
+
+<body>
+    {% for category in categories %}
+        <b>{{ category.name }}({{ category.id }}) - {{ category.iconKey }}</b>
+        {% for cookie in category.fortuneCookies %}
+            <!--p>{{ cookie.fortune }}</p-->
+        {% endfor %}
+    {% endfor %}
+
+    <br/>
+    Printed History ({{ fortunesPrinted|number_format }} total)<br/>
+    Average History ({{ averagePrinted|number_format }} total)
+</body>
+
+</html>

@@ -53,6 +53,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
+            "DoctrineQuery\\": "src/DoctrineQuery/",
             "Fundamental\\": "src/Fundamental/",
             "HttpKernel\\": "src/HttpKernel/",
             "UseBundle\\": "src/UseBundle/"
@@ -60,6 +61,7 @@
     },
     "autoload-dev": {
         "psr-4": {
+            "DoctrineQuery\\Tests\\": "src/DoctrineQuery/tests/",
             "Fundamental\\Tests\\": "src/Fundamental/tests/",
             "UseBundle\\Tests\\": "src/UseBundle/tests/"
         }

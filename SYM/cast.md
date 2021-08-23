@@ -11,9 +11,13 @@
 
 # Doctrine and database
 * Dotenv, Doctrine console & Migrations
-* Doctrine Queries, Repositoryn, SensioFrameworkExtraBundle
+* Doctrine Queries, Repository, SensioFrameworkExtraBundle
 * KnpLabs (Markdown, Menu, Paginator...)
 * Orm fixtures, zenstruck/foundry, Doctrine Extensions
+    -
+- ORM is what does all the mapping of data onto objects.
+- DBAL is a wrapper around PDO, can be used independent of the ORM.
+* DoctrineFilter (config and enable)
 
 # HttpKernel Request-Response
 - Kernel (config, globals) & HttpKernel->handleRaw()
