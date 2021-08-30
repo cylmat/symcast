@@ -17,6 +17,7 @@
         "sensio/framework-extra-bundle": "^6.1",
         "sentry/sentry-symfony": "^4.1",
         "stof/doctrine-extensions-bundle": "^1.5.0",
+        "symfony/asset": "5.0.*",
         "symfony/browser-kit": "5.0.*",
         "symfony/console": "*",
         "symfony/css-selector": "5.0.*",
@@ -27,7 +28,10 @@
         "symfony/monolog-bundle": "^3.7",
         "symfony/phpunit-bridge": "^5.3",
         "symfony/proxy-manager-bridge": "^4",
+        "symfony/security-bundle": "5.0.*",
+        "symfony/serializer": "5.0.*",
         "symfony/stopwatch": "5.0.*",
+        "symfony/translation": "5.0.*",
         "symfony/twig-bundle": "5.0.*",
         "symfony/var-dumper": "5.0.*",
         "symfony/web-profiler-bundle": "5.0.*",
@@ -56,6 +60,7 @@
             "DoctrineQuery\\": "src/DoctrineQuery/",
             "Fundamental\\": "src/Fundamental/",
             "HttpKernel\\": "src/HttpKernel/",
+            "SecurityAuth\\": "src/SecurityAuth/",
             "UseBundle\\": "src/UseBundle/"
         }
     },
@@ -63,6 +68,7 @@
         "psr-4": {
             "DoctrineQuery\\Tests\\": "src/DoctrineQuery/tests/",
             "Fundamental\\Tests\\": "src/Fundamental/tests/",
+            "SecurityAuth\\Tests\\": "src/SecurityAuth/tests/",
             "UseBundle\\Tests\\": "src/UseBundle/tests/"
         }
     },

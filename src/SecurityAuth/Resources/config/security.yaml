@@ -1,0 +1,69 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+
+    ##################
+    # AUTHENTICATION #
+    ##################
+
+    # ! Users are reloaded on each request
+
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            # id: SecurityAuth\Entity\User # for classical user
+            entity:
+                class: SecurityAuth\Entity\User # from database
+                property: email # used with ?_switch_user=<email> for exemple
+    encoders:
+        SecurityAuth\Entity\User:
+            algorithm: auto # bcrypt, argon2i
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy # is like "true"
+            provider: app_user_provider
+            guard: # "make:auth"
+                authenticators:
+                    - SecurityAuth\Security\LoginFormAuthenticator
+                    - SecurityAuth\Security\ApiTokenAuthenticator
+                entry_point: SecurityAuth\Security\LoginFormAuthenticator # used for anonymous user
+            logout:
+                path: security_logout
+                target: /login
+
+            # Checkbox
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 2592000
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # Can use url of type ?_switch_user=spacebar1@exemple.com with ROLE_ALLOWED_TO_SWITCH
+            # then ?_switch_user=_exit to end the session
+            switch_user: true
+
+    role_hierarchy:
+        ROLE_ADMIN: ['ROLE_ADMIN_COMMENT', 'ROLE_ADMIN_ARTICLE', 'ROLE_ALLOWED_TO_SWITCH']
+        ROLE_USER: ['ROLE_USER_LAMBDA', 'ROLE_USER_PLUS']
+
+    #################
+    # AUTHORIZATION #
+    #################
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # but, definitely allow /login to be accessible anonymously
+        # must be set first, access is read one by one
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY } # guests AND loggeds in
+
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/account, roles: IS_AUTHENTICATED_FULLY } # same as if ROLE_USER is used, no guests
+        # - { path: ^/profile, roles: ROLE_USER }
+
+        # - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED } # use "remember_me"

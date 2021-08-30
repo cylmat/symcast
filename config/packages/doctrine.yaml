@@ -18,6 +18,9 @@ doctrine:
             Fundamental:
                 dir: 'Entity'
                 is_bundle: true
+            SecurityAuth:
+                dir: 'Entity'
+                is_bundle: true
         #     App:
         #         is_bundle: false
         #         type: annotation
