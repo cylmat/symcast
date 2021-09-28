@@ -19,6 +19,7 @@ return [
     Zenstruck\Foundry\ZenstruckFoundryBundle::class => ['dev' => true, 'test' => true],
 
     DoctrineQuery\DoctrineQuery::class => ['all' => true],
+    Forms\Forms::class => ['all' => true],
     Fundamental\Fundamental::class => ['all' => true],
     HttpKernel\HttpKernel::class => ['all' => true],
     SecurityAuth\SecurityAuth::class => ['all' => true],

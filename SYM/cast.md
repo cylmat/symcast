@@ -63,3 +63,11 @@ monolog.handlers.deprecation(_filter)
      PasswordAuthenticatedInterface -> rehash legacy passwords when login  PasswordUpgraderInterface
 * PHP 7.4 "preloading": opcache.preload: App_KernelProdContainer.preload.php
 * Container Running: console lint:container / composer why <package>
+
+## 8.Forms
+composer req validator, 
+    "sanity validation": (string into a number field...), Constraints inside form Type
+    "business rules validation" (check length, characters...), @Assert on entity
+mapped value, form_widget, UniqueEntity, form_theme, block_prefix
+DataTransformer, FormTypeExtension, DTO, make:validator
+FormEvents

@@ -51,8 +51,11 @@ class UserFixture extends BaseFixture
 
         $this->createMany(3, function($i) use ($manager) {
             $article = new Article();
+            $article->setTitle($this->faker->sentence());
             $article->setAuthor($this->users[rand(0, 1)]);
             $article->setContent($this->faker->sentence());
+            $article->setPublishedAt(new \DateTime());
+            $article->agreeTerms();
 
             return $article;
         });
@@ -69,7 +72,10 @@ class UserFixture extends BaseFixture
 
         $article = new Article();
         $article->setAuthor($user);
+        $article->setTitle($this->faker->sentence());
         $article->setContent('admin - ' . $this->faker->sentence());
+        $article->setPublishedAt(new \DateTime());
+        $article->agreeTerms();
         $manager->persist($article);
 
         $manager->flush();

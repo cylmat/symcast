@@ -22,7 +22,7 @@ class ApiController extends AbstractController
         $user = $this->getUser();
 
         return $this->json($user, 200, [], [
-            'groups' => ['serialize_main'],
+            'groups' => ['serialize_main'], //Serializer annotations
         ]);
     }
 }

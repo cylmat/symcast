@@ -1,0 +1,93 @@
+{% form_theme articleForm _self %}
+{# vendor/symfony/twig-bridge/Resources/views/Form/form_div_layout.html.twig:334 #}
+
+{# Custom form theme #}
+{%- block form_row -%}
+
+    {# dump() #}
+
+    {%- set widget_attr = {} -%}
+    {%- if name is defined and name is not empty -%}
+        {%- set widget_attr = { attr: {
+            'placeholder': name ~ ' placeholded',
+            'aria-describedby': id ~ "_help"
+        }} -%}
+    {%- endif -%}
+
+    {# vendor/symfony/twig-bridge/Extension/FormExtension.php #}
+
+    <div{#% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %#}>
+        {% if form is defined %}
+            <{{- form_label(form, null, {
+                label_attr: { class: 'can-be-sr-only' },
+            }) -}}>
+            {{- form_errors(form) -}}
+            {{- form_widget(form, widget_attr) -}}
+            {{- form_help(form) -}}
+        {% endif %}
+    </div>
+{%- endblock form_row -%}
+{# -custom #}
+
+
+
+{{ form_start(articleForm, {
+    'method': 'POST',
+    'attr': {'class': 'form-signin'}
+}) }}
+    {#{ form_widget(articleForm) }#} {# entire form #}
+
+    {{ form_row(articleForm.title, {
+        'label': 'Article title! - ' ~ articleForm.title.vars.id
+    }) }}
+    {#<div>
+    { form_label(articleForm.title, 'Article title') }}
+    {{ form_errors(articleForm.title) }}
+    {{ form_widget(articleForm.title) }}
+    {{ form_help(articleForm.title) }
+    </div>#}
+
+    {{ form_row(articleForm.unexistedParam) }}
+    {{ form_row(articleForm.content, {
+        attr: { placeholder: "It's content" }
+    }) }}
+    
+    {% if articleForm.publishedAt is defined %}
+        {{ form_row(articleForm.publishedAt) }}
+    {% endif %}
+    
+    {{ form_row(articleForm.author) }}
+
+    {# custom ONE field #}
+    {{ form_row(articleForm.agreeTerms) }}
+    {#% block _article_form_agreeTerms %}
+        <div class="form-check checkbox mb-3">
+            {{ form_errors(articleForm) }}
+            <input type="checkbox" id="article_form_agreeTerms" name="article_form[agreeTerms]" required="required" placeholder="agreeTerms placeholded" aria-describedby="article_form_agreeTerms_help" class="form-check-input" value="1" />
+            <label class="form-check-label required" for="article_form_agreeTerms">Agree terms</label>
+        </div>
+    {% endblock %#}
+    {# -custom #}
+
+
+
+
+    {{ form_row(articleForm.location, {
+        attr: {
+            'data-specific-location-url': path('admin_article_location_select'),
+            'class': 'js-article-form-location'
+        }
+    }) }}
+    {# add js #}
+
+    <div class="js-specific-location-target">
+        {%  if articleForm.specificLocationName is defined %}
+            {{ form_row(articleForm.specificLocationName) }}
+        {% endif %}
+    </div>
+
+
+    
+
+    <button type="submit" class="btn btn-primary">- {{ button_text }} -</button>
+{{ form_end(articleForm, {'render_rest': true}) }} {# render hidden and csrf #}

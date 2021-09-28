@@ -19,6 +19,19 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * @return User[]
+     */
+    public function findAllMatch(string $query, int $limit = 5)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
@@ -35,6 +48,18 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return User[]
+     */
+    public function findAllEmailAlphabetical()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.email', 'ASC')
+            ->getQuery()
+            ->execute()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?User

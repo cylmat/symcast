@@ -19,6 +19,8 @@ class User implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * 
+     * @Groups("serialize_id")
      */
     private $id;
 
@@ -54,6 +56,11 @@ class User implements UserInterface
 
     // No need to bidirectionnal with articles
 
+    public function __toString(): string
+    {
+        return $this->firstName;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -71,12 +78,12 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function getApiTokens(): ?string
+    public function getApiTokens(): ?object
     {
         return $this->apiTokens;
     }
 
-    public function setApiTokens(string $apiTokens): self
+    public function setApiTokens(object $apiTokens): self
     {
         $this->apiTokens = $apiTokens;
 

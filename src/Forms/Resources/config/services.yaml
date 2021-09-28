@@ -1,0 +1,23 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc. thank to their interface
+
+    Forms\:
+        resource: '../../'
+        exclude:
+            - '../Tests/'
+
+    Forms\Controller\:
+        resource: '../../Controller/'
+        tags: ['controller.service_arguments']
+
+    # Don't need it with Symfony 4.2
+    # only correct INterface is used to generate tag automatically
+    # Forms\TypeExtension\TextareaSizeExtension:
+    #     tags:
+    #         - {
+    #             name: form.type_extension,
+    #             extended_type: Symfony\Component\Form\Extension\Core\Type\TextareaType
+    #         }
